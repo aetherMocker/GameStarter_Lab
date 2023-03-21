@@ -17,11 +17,13 @@ import android.util.Log;
  */
 public class PigLocalGame extends LocalGame {
 
+    private PigGameState pigGameState;
+
     /**
      * This ctor creates a new game state
      */
     public PigLocalGame() {
-        //TODO  You will implement this constructor
+        pigGameState = new PigGameState();
     }
 
     /**
@@ -29,8 +31,12 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected boolean canMove(int playerIdx) {
-        //TODO  You will implement this method
-        return false;
+        if(playerIdx == pigGameState.getPlayerID()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -40,7 +46,21 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected boolean makeMove(GameAction action) {
-        //TODO  You will implement this method
+        if(action instanceof PigHoldAction) {
+            if(pigGameState.getPlayerID() == 0) {
+                pigGameState.setPlayer0Score(pigGameState.getPlayer0Score() + pigGameState.getRunningTotalScore());
+                pigGameState.setRunningTotalScore(0);
+                pigGameState.setPlayerID(1);
+            }
+            if(pigGameState.getPlayerID() == 1) {
+                pigGameState.setPlayer1Score(pigGameState.getPlayer1Score() + pigGameState.getRunningTotalScore());
+                pigGameState.setRunningTotalScore(0);
+                pigGameState.setPlayerID(0);
+            }
+        }
+        else if(action instanceof PigRollAction) {
+
+        }
         return false;
     }//makeMove
 
