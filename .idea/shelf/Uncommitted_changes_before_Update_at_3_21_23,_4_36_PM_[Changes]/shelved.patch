@@ -1,0 +1,28 @@
+Index: app/src/main/java/edu/up/cs301/pig/PigHoldAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/up/cs301/pig/PigHoldAction.java b/app/src/main/java/edu/up/cs301/pig/PigHoldAction.java
+new file mode 100644
+--- /dev/null	(date 1679441787963)
++++ b/app/src/main/java/edu/up/cs301/pig/PigHoldAction.java	(date 1679441787963)
+@@ -0,0 +1,4 @@
++package edu.up.cs301.pig;
++
++public class PigHoldAction {
++}
+Index: app/src/main/java/edu/up/cs301/pig/PigRollAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/up/cs301/pig/PigRollAction.java b/app/src/main/java/edu/up/cs301/pig/PigRollAction.java
+new file mode 100644
+--- /dev/null	(date 1679441787961)
++++ b/app/src/main/java/edu/up/cs301/pig/PigRollAction.java	(date 1679441787961)
+@@ -0,0 +1,4 @@
++package edu.up.cs301.pig;
++
++public class PigRollAction {
++}
