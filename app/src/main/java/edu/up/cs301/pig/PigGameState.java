@@ -11,7 +11,19 @@ public class PigGameState extends GameState {
     private int dieValue;
 
     public PigGameState() {
+        playerID = 0;
+        player0Score = 0;
+        player1Score = 0;
+        runningTotalScore = 0;
+        dieValue = 1;
+    }
 
+    public PigGameState(PigGameState pgs) {
+        this.playerID = pgs.playerID;
+        this.player0Score = pgs.player0Score;
+        this.player1Score = pgs.player1Score;
+        this.runningTotalScore = pgs.runningTotalScore;
+        this.dieValue = pgs.dieValue;
     }
 
     public int getPlayerID() {return playerID;}
