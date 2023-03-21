@@ -7,6 +7,8 @@ import edu.up.cs301.game.infoMsg.GameState;
 
 import android.util.Log;
 
+import java.util.Random;
+
 // dummy comment, to see if commit and push work from srvegdahl account
 
 /**
@@ -51,15 +53,30 @@ public class PigLocalGame extends LocalGame {
                 pigGameState.setPlayer0Score(pigGameState.getPlayer0Score() + pigGameState.getRunningTotalScore());
                 pigGameState.setRunningTotalScore(0);
                 pigGameState.setPlayerID(1);
+                return true;
             }
             if(pigGameState.getPlayerID() == 1) {
                 pigGameState.setPlayer1Score(pigGameState.getPlayer1Score() + pigGameState.getRunningTotalScore());
                 pigGameState.setRunningTotalScore(0);
                 pigGameState.setPlayerID(0);
+                return true;
             }
         }
         else if(action instanceof PigRollAction) {
-
+            Random r = new Random();
+            pigGameState.setDieValue(r.nextInt(5) +1);
+            if(pigGameState.getDieValue() != 1) {
+                pigGameState.setRunningTotalScore(pigGameState.getRunningTotalScore() + pigGameState.getDieValue());
+                return true;
+            }
+            else {
+                pigGameState.setRunningTotalScore(0);
+                if(pigGameState.getPlayerID() == 1) {
+                    pigGameState.setPlayerID(0); }
+                else {
+                    pigGameState.setPlayerID(1);
+                }
+            }
         }
         return false;
     }//makeMove
