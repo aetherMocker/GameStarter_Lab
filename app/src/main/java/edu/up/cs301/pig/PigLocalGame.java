@@ -90,7 +90,7 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         PigGameState pigGameState1 = new PigGameState(pigGameState);
-        p.sendInfo(pigGameState);
+        p.sendInfo(pigGameState1);
     }//sendUpdatedSate
 
     /**
