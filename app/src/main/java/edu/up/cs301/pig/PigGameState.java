@@ -32,9 +32,9 @@ public class PigGameState extends GameState {
     public int getRunningTotalScore() {return runningTotalScore;}
     public int getDieValue() {return dieValue;}
 
-    public void setPlayerID(int v){playerID = v;}
-    public void setPlayer0Score(int v){player0Score = v;}
-    public void setPlayer1Score(int v){player1Score = v;}
-    public void setRunningTotalScore(int v){runningTotalScore = v;}
-    public void setDieValue(int v){dieValue = v;}
+    public void setPlayerID(int v) {playerID = v;}
+    public void setPlayer0Score(int v) {player0Score = v;}
+    public void setPlayer1Score(int v) {player1Score = v;}
+    public void setRunningTotalScore(int v) {runningTotalScore = v;}
+    public void setDieValue(int v) {dieValue = v;}
 }
