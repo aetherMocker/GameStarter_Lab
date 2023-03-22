@@ -64,7 +64,7 @@ public class PigLocalGame extends LocalGame {
         else if (action instanceof PigRollAction) {
             Random r = new Random();
             pigGameState.setDieValue(r.nextInt(5) +1);
-            if(pigGameState.getDieValue() != 1) {
+            if (pigGameState.getDieValue() != 1) {
                 pigGameState.setRunningTotalScore(pigGameState.getRunningTotalScore() + pigGameState.getDieValue());
                 return true;
             }
@@ -89,7 +89,8 @@ public class PigLocalGame extends LocalGame {
      */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
-        //TODO  You will implement this method
+        PigGameState pigGameState1 = new PigGameState(pigGameState);
+        p.sendInfo(pigGameState);
     }//sendUpdatedSate
 
     /**
