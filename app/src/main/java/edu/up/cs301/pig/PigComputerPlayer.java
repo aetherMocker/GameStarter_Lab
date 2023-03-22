@@ -36,7 +36,7 @@ public class PigComputerPlayer extends GameComputerPlayer {
             return;
         }
         else {
-            sleep(500);
+            sleep(2000);
             Random r = new Random();
             int rand = r.nextInt(100);
             if (rand < 50) {

@@ -61,34 +61,33 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     @Override
     public void receiveInfo(GameInfo info) {
         if(info instanceof PigGameState) {
-            if(((PigGameState) info).getPlayerID() == this.playerNum) {
-                if(this.playerNum == 1) {
-                    playerScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
-                    oppScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
-                }
-                else if(this.playerNum == 0) {
-                    playerScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
-                    oppScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
-                }
-                turnTotalTextView.setText("" + ((PigGameState) info).getRunningTotalScore());
-                if(((PigGameState) info).getDieValue() == 1) {
-                    dieImageButton.setImageResource(R.drawable.face1);
-                }
-                else if(((PigGameState) info).getDieValue() == 2) {
-                    dieImageButton.setImageResource(R.drawable.face2);
-                }
-                else if(((PigGameState) info).getDieValue() == 3) {
-                    dieImageButton.setImageResource(R.drawable.face3);
-                }
-                else if(((PigGameState) info).getDieValue() == 4) {
-                    dieImageButton.setImageResource(R.drawable.face4);
-                }
-                else if(((PigGameState) info).getDieValue() == 5) {
-                    dieImageButton.setImageResource(R.drawable.face5);
-                }
-                else if(((PigGameState) info).getDieValue() == 6) {
-                    dieImageButton.setImageResource(R.drawable.face6);
-                }
+            if(this.playerNum == 1) {
+                playerScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
+                oppScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
+            }
+            else if(this.playerNum == 0) {
+                playerScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
+                oppScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
+            }
+            turnTotalTextView.setText("" + ((PigGameState) info).getRunningTotalScore());
+
+            if(((PigGameState) info).getDieValue() == 1) {
+                dieImageButton.setImageResource(R.drawable.face1);
+            }
+            else if(((PigGameState) info).getDieValue() == 2) {
+                dieImageButton.setImageResource(R.drawable.face2);
+            }
+            else if(((PigGameState) info).getDieValue() == 3) {
+                dieImageButton.setImageResource(R.drawable.face3);
+            }
+            else if(((PigGameState) info).getDieValue() == 4) {
+                dieImageButton.setImageResource(R.drawable.face4);
+            }
+            else if(((PigGameState) info).getDieValue() == 5) {
+                dieImageButton.setImageResource(R.drawable.face5);
+            }
+            else if(((PigGameState) info).getDieValue() == 6) {
+                dieImageButton.setImageResource(R.drawable.face6);
             }
         }
         else {
