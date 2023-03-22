@@ -54,7 +54,7 @@ public class PigLocalGame extends LocalGame {
                 pigGameState.setRunningTotalScore(0);
                 pigGameState.setPlayerID(1);
             }
-            if (pigGameState.getPlayerID() == 1) {
+            else if (pigGameState.getPlayerID() == 1) {
                 pigGameState.setPlayer1Score(pigGameState.getPlayer1Score() + pigGameState.getRunningTotalScore());
                 pigGameState.setRunningTotalScore(0);
                 pigGameState.setPlayerID(0);

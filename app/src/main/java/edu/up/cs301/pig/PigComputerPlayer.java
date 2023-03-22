@@ -36,16 +36,15 @@ public class PigComputerPlayer extends GameComputerPlayer {
             return;
         }
         else {
+            sleep(500);
             Random r = new Random();
             int rand = r.nextInt(100);
             if (rand < 50) {
                 PigHoldAction pha = new PigHoldAction(this);
-                sleep(1000);
                 game.sendAction(pha);
             }
             else {
                 PigRollAction pra = new PigRollAction(this);
-                sleep(1000);
                 game.sendAction(pra);
             }
         }
