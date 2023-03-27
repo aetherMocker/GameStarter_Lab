@@ -91,7 +91,7 @@ public class PigLocalGame extends LocalGame {
     protected void sendUpdatedStateTo(GamePlayer p) {
         PigGameState pigGameState1 = new PigGameState(pigGameState);
         p.sendInfo(pigGameState1);
-    }//sendUpdatedSate
+    }//sendUpdatedState
 
     /**
      * Check if the game is over

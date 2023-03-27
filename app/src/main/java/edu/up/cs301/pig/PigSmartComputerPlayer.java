@@ -27,26 +27,71 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
         if (pigGameState.getPlayerID() != this.playerNum) {
             return;
         } else {
-            sleep(2000);
             Random r = new Random();
             if (this.playerNum == 1) {
-                while (pigGameState.getRunningTotalScore() < 15) {
-                    PigRollAction pra = new PigRollAction(this);
-                    game.sendAction(pra);
+                if (pigGameState.getPlayer0Score() > 30 && pigGameState.getPlayer1Score() < 30) {
+                    for (int i = 0; i < 5; i++) {
+                        sleep(1000);
+                        PigRollAction pra = new PigRollAction(this);
+                        game.sendAction(pra);
+                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
+                        if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer1Score()) {
+                            PigHoldAction pha = new PigHoldAction(this);
+                            game.sendAction(pha);
+                            break;
+                        }
+                    }
                     PigHoldAction pha = new PigHoldAction(this);
                     game.sendAction(pha);
-                    Log.d("Computer Player", "played");
                 }
+                else {
+                    for (int i = 0; i < 3; i++) {
+                        sleep(1000);
+                        PigRollAction pra = new PigRollAction(this);
+                        game.sendAction(pra);
+                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
+                        if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer1Score()) {
+                            PigHoldAction pha = new PigHoldAction(this);
+                            game.sendAction(pha);
+                            break;
+                        }
+                    }
+                    PigHoldAction pha = new PigHoldAction(this);
+                    game.sendAction(pha);
+                }
+                Log.d("Computer Player", "played");
             } else {
-                while (pigGameState.getRunningTotalScore() < 15) {
-                    PigRollAction pra = new PigRollAction(this);
-                    game.sendAction(pra);
+                if (pigGameState.getPlayer1Score() > 30 && pigGameState.getPlayer0Score() < 30) {
+                    for (int i = 0; i < 5; i++) {
+                        sleep(1000);
+                        PigRollAction pra = new PigRollAction(this);
+                        game.sendAction(pra);
+                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
+                        if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer0Score()) {
+                            PigHoldAction pha = new PigHoldAction(this);
+                            game.sendAction(pha);
+                            break;
+                        }
+                    }
                     PigHoldAction pha = new PigHoldAction(this);
                     game.sendAction(pha);
-                    Log.d("Computer Player", "played");
-
                 }
-
+                else {
+                    for (int i = 0; i < 3; i++) {
+                        sleep(1000);
+                        PigRollAction pra = new PigRollAction(this);
+                        game.sendAction(pra);
+                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
+                        if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer0Score()) {
+                            PigHoldAction pha = new PigHoldAction(this);
+                            game.sendAction(pha);
+                            break;
+                        }
+                    }
+                    PigHoldAction pha = new PigHoldAction(this);
+                    game.sendAction(pha);
+                }
+                Log.d("Computer Player", "played");
             }
         }
 
