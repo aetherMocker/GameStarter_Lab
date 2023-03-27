@@ -5,6 +5,7 @@ import java.util.Random;
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.actionMsg.GameAction;
 import edu.up.cs301.game.infoMsg.GameInfo;
+import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
 import edu.up.cs301.game.util.Tickable;
 
 /**
@@ -30,6 +31,10 @@ public class PigComputerPlayer extends GameComputerPlayer {
      */
     @Override
     protected void receiveInfo(GameInfo info) {
+        if (info instanceof NotYourTurnInfo) {
+            return;
+        }
+
         PigGameState pigGameState = (PigGameState) info;
 
         if (pigGameState.getPlayerID() != this.playerNum){

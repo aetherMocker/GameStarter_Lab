@@ -6,6 +6,7 @@ import java.util.Random;
 
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
+import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
 
 public class PigSmartComputerPlayer extends GameComputerPlayer {
     /**
@@ -22,19 +23,21 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
      */
     @Override
     protected void receiveInfo(GameInfo info) {
+        if (info instanceof NotYourTurnInfo) {
+            return;
+        }
+
         PigGameState pigGameState = (PigGameState) info;
 
         if (pigGameState.getPlayerID() != this.playerNum) {
             return;
         } else {
-            Random r = new Random();
             if (this.playerNum == 1) {
                 if (pigGameState.getPlayer0Score() > 30 && pigGameState.getPlayer1Score() < 30) {
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < 4; i++) {
                         sleep(1000);
                         PigRollAction pra = new PigRollAction(this);
                         game.sendAction(pra);
-                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
                         if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer1Score()) {
                             PigHoldAction pha = new PigHoldAction(this);
                             game.sendAction(pha);
@@ -49,7 +52,6 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
                         sleep(1000);
                         PigRollAction pra = new PigRollAction(this);
                         game.sendAction(pra);
-                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
                         if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer1Score()) {
                             PigHoldAction pha = new PigHoldAction(this);
                             game.sendAction(pha);
@@ -62,11 +64,10 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
                 Log.d("Computer Player", "played");
             } else {
                 if (pigGameState.getPlayer1Score() > 30 && pigGameState.getPlayer0Score() < 30) {
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < 4; i++) {
                         sleep(1000);
                         PigRollAction pra = new PigRollAction(this);
                         game.sendAction(pra);
-                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
                         if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer0Score()) {
                             PigHoldAction pha = new PigHoldAction(this);
                             game.sendAction(pha);
@@ -81,7 +82,6 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
                         sleep(1000);
                         PigRollAction pra = new PigRollAction(this);
                         game.sendAction(pra);
-                        //if (pigGameState.getRunningTotalScore() == 0) {break;}
                         if (pigGameState.getRunningTotalScore() > 50 - pigGameState.getPlayer0Score()) {
                             PigHoldAction pha = new PigHoldAction(this);
                             game.sendAction(pha);
