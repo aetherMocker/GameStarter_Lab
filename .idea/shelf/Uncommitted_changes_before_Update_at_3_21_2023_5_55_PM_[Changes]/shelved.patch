@@ -1,0 +1,40 @@
+Index: app/src/main/java/edu/up/cs301/pig/PigHumanPlayer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.up.cs301.pig;\r\n\r\nimport edu.up.cs301.game.GameHumanPlayer;\r\nimport edu.up.cs301.game.GameMainActivity;\r\nimport edu.up.cs301.game.R;\r\nimport edu.up.cs301.game.infoMsg.GameInfo;\r\n\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.Drawable;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.TextView;\r\nimport android.view.View.OnClickListener;\r\n\r\n/**\r\n * A GUI for a human to play Pig. This default version displays the GUI but is incomplete\r\n *\r\n *\r\n * @author Andrew M. Nuxoll, modified by Steven R. Vegdahl\r\n * @version February 2016\r\n */\r\npublic class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {\r\n\r\n\t/* instance variables */\r\n\r\n    // These variables will reference widgets that will be modified during play\r\n    private TextView    playerScoreTextView = null;\r\n    private TextView    oppScoreTextView    = null;\r\n    private TextView    turnTotalTextView   = null;\r\n    private TextView    messageTextView     = null;\r\n    private ImageButton dieImageButton      = null;\r\n    private Button      holdButton          = null;\r\n\r\n    // the android activity that we are running\r\n    private GameMainActivity myActivity;\r\n\r\n    /**\r\n     * constructor does nothing extra\r\n     */\r\n    public PigHumanPlayer(String name) {\r\n        super(name);\r\n    }\r\n\r\n    /**\r\n     * Returns the GUI's top view object\r\n     *\r\n     * @return\r\n     * \t\tthe top object in the GUI's view heirarchy\r\n     */\r\n    public View getTopView() {\r\n        return myActivity.findViewById(R.id.top_gui_layout);\r\n    }\r\n\r\n    /**\r\n     * callback method when we get a message (e.g., from the game)\r\n     *\r\n     * @param info\r\n     * \t\tthe message\r\n     */\r\n    @Override\r\n    public void receiveInfo(GameInfo info) {\r\n        //System.out.println(\"Hello there!\");\r\n        //TODO You will implement this method to receive state objects from the game\r\n    }//receiveInfo\r\n\r\n    /**\r\n     * this method gets called when the user clicks the die or hold button. It\r\n     * creates a new PigRollAction or PigHoldAction and sends it to the game.\r\n     *\r\n     * @param button\r\n     * \t\tthe button that was clicked\r\n     */\r\n    public void onClick(View button) {\r\n        //TODO  You will implement this method to send appropriate action objects to the game\r\n    }// onClick\r\n\r\n    /**\r\n     * callback method--our game has been chosen/rechosen to be the GUI,\r\n     * called from the GUI thread\r\n     *\r\n     * @param activity\r\n     * \t\tthe activity under which we are running\r\n     */\r\n    public void setAsGui(GameMainActivity activity) {\r\n\r\n        // remember the activity\r\n        myActivity = activity;\r\n\r\n        // Load the layout resource for our GUI\r\n        activity.setContentView(R.layout.pig_layout);\r\n\r\n        //Initialize the widget reference member variables\r\n        this.playerScoreTextView = (TextView)activity.findViewById(R.id.yourScoreValue);\r\n        this.oppScoreTextView    = (TextView)activity.findViewById(R.id.oppScoreValue);\r\n        this.turnTotalTextView   = (TextView)activity.findViewById(R.id.turnTotalValue);\r\n        this.messageTextView     = (TextView)activity.findViewById(R.id.messageTextView);\r\n        this.dieImageButton      = (ImageButton)activity.findViewById(R.id.dieButton);\r\n        this.holdButton          = (Button)activity.findViewById(R.id.holdButton);\r\n\r\n        //Listen for button presses\r\n        dieImageButton.setOnClickListener(this);\r\n        holdButton.setOnClickListener(this);\r\n\r\n    }//setAsGui\r\n\r\n}// class PigHumanPlayer\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/up/cs301/pig/PigHumanPlayer.java b/app/src/main/java/edu/up/cs301/pig/PigHumanPlayer.java
+--- a/app/src/main/java/edu/up/cs301/pig/PigHumanPlayer.java	(revision f3e261debb0c72821eb5aaf7ff6f73e10d25dc6e)
++++ b/app/src/main/java/edu/up/cs301/pig/PigHumanPlayer.java	(date 1679446509993)
+@@ -60,8 +60,13 @@
+      */
+     @Override
+     public void receiveInfo(GameInfo info) {
+-        //System.out.println("Hello there!");
+-        //TODO You will implement this method to receive state objects from the game
++        if (info instanceof PigGameState) {
++
++        }
++        else {
++            flash(Color.RED, 10);
++            return;
++        }
+     }//receiveInfo
+ 
+     /**
+@@ -72,7 +77,12 @@
+      * 		the button that was clicked
+      */
+     public void onClick(View button) {
+-        //TODO  You will implement this method to send appropriate action objects to the game
++        if (button instanceof ImageButton) {
++            //Roll
++        }
++        else if (button instanceof Button) {
++            //Hold
++        }
+     }// onClick
+ 
+     /**
