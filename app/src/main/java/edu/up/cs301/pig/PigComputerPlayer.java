@@ -16,6 +16,8 @@ import edu.up.cs301.game.util.Tickable;
  */
 public class PigComputerPlayer extends GameComputerPlayer {
 
+    public String getName() { return this.name; }
+
     /**
      * ctor does nothing extra
      */

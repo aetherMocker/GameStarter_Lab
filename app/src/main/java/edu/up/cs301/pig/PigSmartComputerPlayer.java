@@ -2,8 +2,6 @@ package edu.up.cs301.pig;
 
 import android.util.Log;
 
-import java.util.Random;
-
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.NotYourTurnInfo;

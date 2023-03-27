@@ -4,7 +4,9 @@ import edu.up.cs301.game.GameHumanPlayer;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.game.infoMsg.GameInfo;
+import edu.up.cs301.game.infoMsg.StartGameInfo;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -26,7 +28,9 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
 
     // These variables will reference widgets that will be modified during play
     private TextView    playerScoreTextView = null;
+    private TextView    playerScoreText     = null;
     private TextView    oppScoreTextView    = null;
+    private TextView    oppScoreText        = null;
     private TextView    turnTotalTextView   = null;
     private TextView    messageTextView     = null;
     private ImageButton dieImageButton      = null;
@@ -58,36 +62,60 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
      * @param info
      * 		the message
      */
+    @SuppressLint("SetTextI18n")
     @Override
     public void receiveInfo(GameInfo info) {
         if(info instanceof PigGameState) {
             if(this.playerNum == 1) {
                 playerScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
                 oppScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
+                messageTextView.setText(this.name + " is Player 1. \n");
+                playerScoreText.setText(this.name + "'s Score: ");
+                oppScoreText.setText(this.allPlayerNames[0] + "'s Score: ");
             }
             else if(this.playerNum == 0) {
                 playerScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
                 oppScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
+                messageTextView.setText(this.name + " is Player 0. \n");
+                playerScoreText.setText(this.name + "'s Score: ");
+                oppScoreText.setText(this.allPlayerNames[1] + "'s Score: ");
             }
             turnTotalTextView.setText("" + ((PigGameState) info).getRunningTotalScore());
+            messageTextView.append(((PigGameState) info).getRunningTotalScore() + " points will be added to Player " + ((PigGameState) info).getPlayerID() + "'s score. \n");
+
+            if(((PigGameState) info).getPlayerID() == this.playerNum) {
+                dieImageButton.setBackgroundColor(Color.RED);
+                messageTextView.append("It's Player 1's turn.\n");
+            }
+            if(((PigGameState) info).getPlayerID() != this.playerNum) {
+                dieImageButton.setBackgroundColor(Color.GRAY);
+                messageTextView.append("It's Player 0's turn.\n");
+            }
+
 
             if(((PigGameState) info).getDieValue() == 1) {
                 dieImageButton.setImageResource(R.drawable.face1);
+                messageTextView.append("Oh no! The die rolls 1! Player " + ((PigGameState) info).getPlayerID() + " ended their turn. \n");
             }
             else if(((PigGameState) info).getDieValue() == 2) {
                 dieImageButton.setImageResource(R.drawable.face2);
+                messageTextView.append("Die rolls 2.\n");
             }
             else if(((PigGameState) info).getDieValue() == 3) {
                 dieImageButton.setImageResource(R.drawable.face3);
+                messageTextView.append("Die rolls 3.\n");
             }
             else if(((PigGameState) info).getDieValue() == 4) {
                 dieImageButton.setImageResource(R.drawable.face4);
+                messageTextView.append("Die rolls 4.\n");
             }
             else if(((PigGameState) info).getDieValue() == 5) {
                 dieImageButton.setImageResource(R.drawable.face5);
+                messageTextView.append("Die rolls 5.\n");
             }
             else if(((PigGameState) info).getDieValue() == 6) {
                 dieImageButton.setImageResource(R.drawable.face6);
+                messageTextView.append("Die rolls 6.\n");
             }
         }
         else {
