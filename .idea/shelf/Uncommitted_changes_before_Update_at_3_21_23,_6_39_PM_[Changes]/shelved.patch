@@ -1,0 +1,25 @@
+Index: app/src/main/java/edu/up/cs301/pig/PigComputerPlayer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.up.cs301.pig;\n\nimport java.util.Random;\n\nimport edu.up.cs301.game.GameComputerPlayer;\nimport edu.up.cs301.game.actionMsg.GameAction;\nimport edu.up.cs301.game.infoMsg.GameInfo;\nimport edu.up.cs301.game.util.Tickable;\n\n/**\n * An AI for Pig\n *\n * @author Andrew M. Nuxoll\n * @version August 2015\n */\npublic class PigComputerPlayer extends GameComputerPlayer {\n\n    /**\n     * ctor does nothing extra\n     */\n    public PigComputerPlayer(String name) {\n        super(name);\n    }\n\n    /**\n     * callback method--game's state has changed\n     *\n     * @param info\n     * \t\tthe information (presumably containing the game's state)\n     */\n    @Override\n    protected void receiveInfo(GameInfo info) {\n        PigGameState pigGameState = (PigGameState) info;\n\n        if (pigGameState.getPlayerID() != this.playerNum){\n            return;\n        }\n        else {\n            Random r = new Random();\n            int rand = r.nextInt(100);\n            if (rand < 50) {\n                PigHoldAction pha = new PigHoldAction(this);\n                sleep(1000);\n                game.sendAction(pha);\n            }\n            else {\n                PigRollAction pra = new PigRollAction(this);\n                sleep(1000);\n                game.sendAction(pra);\n            }\n        }\n\n    }//receiveInfo\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/up/cs301/pig/PigComputerPlayer.java b/app/src/main/java/edu/up/cs301/pig/PigComputerPlayer.java
+--- a/app/src/main/java/edu/up/cs301/pig/PigComputerPlayer.java	(revision e61fd8f55d00c7bdba87c5d0df535b8f20fcb6f4)
++++ b/app/src/main/java/edu/up/cs301/pig/PigComputerPlayer.java	(date 1679447909296)
+@@ -40,12 +40,12 @@
+             int rand = r.nextInt(100);
+             if (rand < 50) {
+                 PigHoldAction pha = new PigHoldAction(this);
+-                sleep(1000);
++                sleep(100);
+                 game.sendAction(pha);
+             }
+             else {
+                 PigRollAction pra = new PigRollAction(this);
+-                sleep(1000);
++                sleep(100);
+                 game.sendAction(pra);
+             }
+         }
