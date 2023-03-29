@@ -103,10 +103,10 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected String checkIfGameOver() {
         if (pigGameState.getPlayer0Score() >= 50) {
-            return "Game over! Player 0 won with a score of " + pigGameState.getPlayer0Score();
+            return "Game over! " + this.playerNames[0] + " won with a score of " + pigGameState.getPlayer0Score();
         }
         else if (pigGameState.getPlayer1Score() >= 50) {
-            return "Game over! Player 1 won with a score of " + pigGameState.getPlayer1Score();
+            return "Game over! " + this.playerNames[1] + " won with a score of " + pigGameState.getPlayer1Score();
         }
         return null;
     }

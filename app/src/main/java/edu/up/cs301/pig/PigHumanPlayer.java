@@ -70,16 +70,14 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
             if(this.playerNum == 1) {
                 playerScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
                 oppScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
-                //messageTextView.setText(this.name + " is Player 1. \n");
-                //playerScoreText.setText(this.name + "'s Score: ");
-                //oppScoreText.setText(this.allPlayerNames[0] + "'s Score: ");
+                messageTextView.setText(this.name + " is Player 1. \n");
+                playerScoreText.setText(this.name + "'s Score: ");
             }
             else if(this.playerNum == 0) {
                 playerScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
                 oppScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
-                //messageTextView.setText(this.name + " is Player 0. \n");
-                //playerScoreText.setText(this.name + "'s Score: ");
-                //oppScoreText.setText(this.allPlayerNames[1] + "'s Score: ");
+                messageTextView.setText(this.name + " is Player 0. \n");
+                playerScoreText.setText(this.name + "'s Score: ");
             }
             turnTotalTextView.setText("" + ((PigGameState) info).getRunningTotalScore());
             messageTextView.append(((PigGameState) info).getRunningTotalScore() + " points will be added to Player " + ((PigGameState) info).getPlayerID() + "'s score. \n");
@@ -131,9 +129,11 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     public void initAfterReady() {
         if (this.playerNum == 0) {
             messageTextView.setText(this.name + " is Player 1. \n");
+            oppScoreText.setText(allPlayerNames[1] + "'s Score: ");
         }
         else if (this.playerNum == 1) {
             messageTextView.setText(this.name + " is Player 0. \n");
+            oppScoreText.setText(allPlayerNames[0] + "'s Score: ");
         }
     }
 
@@ -173,7 +173,9 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
 
         //Initialize the widget reference member variables
         this.playerScoreTextView = (TextView)activity.findViewById(R.id.yourScoreValue);
+        this.playerScoreText = activity.findViewById(R.id.yourScoreText);
         this.oppScoreTextView    = (TextView)activity.findViewById(R.id.oppScoreValue);
+        this.oppScoreText = activity.findViewById(R.id.oppScoreText);
         this.turnTotalTextView   = (TextView)activity.findViewById(R.id.turnTotalValue);
         this.messageTextView     = (TextView)activity.findViewById(R.id.messageTextView);
         this.dieImageButton      = (ImageButton)activity.findViewById(R.id.dieButton);
