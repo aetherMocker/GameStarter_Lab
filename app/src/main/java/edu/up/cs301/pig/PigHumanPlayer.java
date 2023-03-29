@@ -9,6 +9,7 @@ import edu.up.cs301.game.infoMsg.StartGameInfo;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -69,16 +70,16 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
             if(this.playerNum == 1) {
                 playerScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
                 oppScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
-                messageTextView.setText(this.name + " is Player 1. \n");
-                playerScoreText.setText(this.name + "'s Score: ");
-                oppScoreText.setText(this.allPlayerNames[0] + "'s Score: ");
+                //messageTextView.setText(this.name + " is Player 1. \n");
+                //playerScoreText.setText(this.name + "'s Score: ");
+                //oppScoreText.setText(this.allPlayerNames[0] + "'s Score: ");
             }
             else if(this.playerNum == 0) {
                 playerScoreTextView.setText("" + ((PigGameState) info).getPlayer0Score());
                 oppScoreTextView.setText("" + ((PigGameState) info).getPlayer1Score());
-                messageTextView.setText(this.name + " is Player 0. \n");
-                playerScoreText.setText(this.name + "'s Score: ");
-                oppScoreText.setText(this.allPlayerNames[1] + "'s Score: ");
+                //messageTextView.setText(this.name + " is Player 0. \n");
+                //playerScoreText.setText(this.name + "'s Score: ");
+                //oppScoreText.setText(this.allPlayerNames[1] + "'s Score: ");
             }
             turnTotalTextView.setText("" + ((PigGameState) info).getRunningTotalScore());
             messageTextView.append(((PigGameState) info).getRunningTotalScore() + " points will be added to Player " + ((PigGameState) info).getPlayerID() + "'s score. \n");
@@ -91,7 +92,6 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
                 dieImageButton.setBackgroundColor(Color.GRAY);
                 messageTextView.append("It's Player 0's turn.\n");
             }
-
 
             if(((PigGameState) info).getDieValue() == 1) {
                 dieImageButton.setImageResource(R.drawable.face1);
@@ -124,12 +124,27 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     }//receiveInfo
 
     /**
+     * perform any initialization that needs to be done after the player
+     * knows what their game-position and opponents' names are.
+     */
+    @Override
+    public void initAfterReady() {
+        if (this.playerNum == 0) {
+            messageTextView.setText(this.name + " is Player 1. \n");
+        }
+        else if (this.playerNum == 1) {
+            messageTextView.setText(this.name + " is Player 0. \n");
+        }
+    }
+
+    /**
      * this method gets called when the user clicks the die or hold button. It
      * creates a new PigRollAction or PigHoldAction and sends it to the game.
      *
      * @param button
      * 		the button that was clicked
      */
+
     public void onClick(View button) {
         if (button instanceof ImageButton) {
             PigRollAction pra = new PigRollAction(this);
